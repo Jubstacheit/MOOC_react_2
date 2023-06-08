@@ -1,14 +1,6 @@
 import propTypes from "prop-types";
-import {useCallback} from "react";
-import axios from "axios";
 
 function UserProfile(props) {
-
-    const handleClick = useCallback(
-        () => {
-            axios.delete('https://jsonplaceholder.typicode.com/users/' + props.user.id)
-            props.deleteUser(props.user.id)
-        }, [props])
 
   return (
     <div className="card">
@@ -17,7 +9,7 @@ function UserProfile(props) {
         <h5 className="card-title">{props.user.name}</h5>
         <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           <div className="d-flex justify-content-end">
-              <button className="btn btn-primary" onClick={handleClick}>
+              <button className="btn btn-primary" onClick={() => props.deleteUser(props.user.id)}>
                   <i className="bi bi-trash3">
                   </i>
               </button>
