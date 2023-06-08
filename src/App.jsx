@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import SimLogin from "./pages/SimLogin";
 import UserList from "./pages/UserList";
 import Roles from "./pages/Roles";
+import Register from "./pages/Register";
 
 function App() {
   const [user, setUser] = useState('')
@@ -17,6 +18,7 @@ function App() {
           <Route path="/roles" element={<Roles />} />
           <Route path="/counter" element={<Counter />} />
           <Route path="/login" element={<SimLogin setUser={setUser} />} />
+            <Route path="/register" element={<Register setUser={setUser} />} />
         </Routes>
       </div>
     </div>

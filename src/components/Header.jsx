@@ -26,7 +26,11 @@ function Header(props) {
           <div className="navbar-text">
             {props.user
               ? <div>Bienvenue  {props.user}</div>
-              : <Link to="/login">Connectez-vous !</Link>}
+              : <div><Link to="/login">Connectez-vous !</Link>
+                  <br/>ou&nbsp;
+                    <Link to="/register">Inscrivez-vous</Link>
+                </div>
+            }
           </div>
         </div>
       </nav>
