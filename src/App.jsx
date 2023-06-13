@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import SimLogin from "./pages/SimLogin";
 import UserList from "./pages/UserList";
 import Roles from "./pages/Roles";
-import Register from "./pages/Register";
+import Register from "./pages/Register2";
 
 function App() {
   const [user, setUser] = useState('')

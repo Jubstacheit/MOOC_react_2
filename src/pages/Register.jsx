@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+/*import React, {useCallback, useEffect, useState} from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
@@ -101,4 +101,4 @@ function Register(props) {
     );
 }
 
-export default Register;
+export default Register;*/
