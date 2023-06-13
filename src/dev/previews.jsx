@@ -4,6 +4,7 @@ import {PaletteTree} from './palette'
 import App from "../App";
 import UserList from "../pages/UserList";
 import Register from "../pages/Register";
+import SimLogin from "../pages/SimLogin";
 
 const ComponentPreviews = () => {
     return (
@@ -16,6 +17,9 @@ const ComponentPreviews = () => {
             </ComponentPreview>
             <ComponentPreview path="/Register">
                 <Register/>
+            </ComponentPreview>
+            <ComponentPreview path="/SimLogin">
+                <SimLogin/>
             </ComponentPreview>
         </Previews>
     )
