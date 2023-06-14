@@ -1,10 +1,12 @@
 import { useCallback, useState, useEffect } from 'react';
 import UserProfile from '../components/UserProfile';
 import axios from 'axios';
+import {useNavigate} from "react-router-dom";
 
 function UserList() {
     const [searchCriteria, setSearchCriteria] = useState('')
     const handleSearch = useCallback(event => setSearchCriteria(event.target.value), [])
+    const navigate = useNavigate()
 
 
     const [users, setUsers] = useState([])
@@ -40,7 +42,7 @@ function UserList() {
         <div className="row">
           {
             filteredUsers.map((user, i) =>
-              <div className="col-xs-6 col-sm-4 col-md-3 mb-3" key={i}>
+              <div onClick={() => navigate('/users/' + user.id)} style={{cursor: "pointer"}} className="col-xs-6 col-sm-4 col-md-3 mb-3" key={i}>
                 <UserProfile user={user} deleteUser={deleteUser} />
               </div>
             )}
