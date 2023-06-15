@@ -100,7 +100,7 @@ function Register(props) {
                         <ErrorMessage name="country" component="div" className="alert alert-warning"/>
                     </div>
                     <div className="d-grid">
-                        <button className="btn btn-primary btn-expand" disabled={isSubmitting}>Valider</button>
+                        <button id="submit" className="btn btn-primary btn-expand" type={"submit"} disabled={isSubmitting}>Valider</button>
                     </div>
                 </Form>
                 )}
