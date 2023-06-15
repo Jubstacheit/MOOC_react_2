@@ -12,17 +12,20 @@ function User() {
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/users/' + id)
             .then((result) => setUser(result.data))
-
     }
     , [id])
 
-    return (
+    return user.name ? (
         <div>
-            <UserProfile user={user} complete>
-
-            </UserProfile>
+            <UserProfile user={user} complete></UserProfile>
         </div>
-    );
+        ) : (
+            <div className="d-flex col-3 mb-3 justify-content-center align-items-center">
+                <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+        </div>
+    )
 }
 
 UserProfile.propTypes = {

@@ -40,17 +40,17 @@ function UserList() {
       <input type="text" className='form-control' placeholder='Recherche' onChange={handleSearch} />
       <div className="container mt-3">
         <div className="row">
-          {
+          { users.length > 0 ?
             filteredUsers.map((user, i) =>
               <div onClick={() => navigate('/users/' + user.id)} style={{cursor: "pointer"}} className="col-xs-6 col-sm-4 col-md-3 mb-3" key={i}>
                 <UserProfile user={user} deleteUser={deleteUser} />
               </div>
-            )}
-          <div className="d-flex col-3 mb-3 justify-content-center align-items-center" >
-            <div className="spinner-border text-primary" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
-          </div>
+            )
+          : <div className="d-flex col-3 mb-3 justify-content-center align-items-center" >
+                  <div className="spinner-border text-primary" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                  </div>
+              </div>}
         </div>
       </div>
     </div>
