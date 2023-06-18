@@ -1,5 +1,6 @@
 import propTypes from "prop-types";
-import {useCallback} from "react";
+import {useCallback, useContext} from "react";
+import {Context} from "../context";
 
 function UserProfile(props) {
 
@@ -10,8 +11,10 @@ function UserProfile(props) {
         }
         , [props])
 
+    const {context} = useContext(Context)
+
     return (
-    <div className="card">
+    <div className={"card bg-" + context.theme}>
       <img src="https://media.istockphoto.com/photos/winter-paysage-picture-id182902156?b=1&k=20&m=182902156&s=170667a&w=0&h=T-p_uID6Nc2l3Ww5X42LlSBODHav5Qn31UHe4PRaWNc=" className="card-img-top" alt="..." />
       <div className="card-body">
         <h5 className="card-title">{props.user.name}</h5>

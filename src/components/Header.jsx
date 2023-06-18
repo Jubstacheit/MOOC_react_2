@@ -1,12 +1,21 @@
-import React from 'react';
+import React, {useCallback, useContext} from 'react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import logo from '../logo.svg'
+import {Context} from "../context";
+import classnames from "classnames";
 
 function Header(props) {
+  const {context, dispatch} = useContext(Context)
+  const switchTheme = useCallback(() => {
+        dispatch({type: 'switchTheme'})
+      },
+      [dispatch],
+  );
+
   return (
     <div>
-      <nav className="navbar navbar-dark bg-dark navbar-expand-md">
+      <nav className={classnames("navbar navbar-expand-md", context.theme==='light' ? "navbar-dark bg-dark" : 'navbar-light bg-secondary')}>
         <div className="container-fluid">
           <div className="navbar-brand">
             <img src={logo} alt="" width="30" height="24" className="d-inline-block align-text-top mt-1" />
@@ -23,6 +32,15 @@ function Header(props) {
               <Link className="nav-link" to="/roles">Rôles</Link>
             </li>
           </ul>
+          <div className="navbar-text me-4">
+            <div className="form-check form-switch">
+              <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={switchTheme}/>
+                <label className="form-check-label"
+                       htmlFor="flexSwitchCheckDefault">
+                  {context.theme}
+                </label>
+            </div>
+          </div>
           <div className="navbar-text">
             {props.user
               ? <div>Bienvenue  {props.user}</div>
