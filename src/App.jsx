@@ -1,4 +1,4 @@
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import { Route, Routes } from "react-router-dom";
 import Counter from "./pages/Counter";
 import Header from "./components/Header";
@@ -13,19 +13,18 @@ import classnames from "classnames";
 import {Context} from "./context";
 
 function App() {
-  const [user, setUser] = useState('')
   const {context} = useContext(Context)
   return (
     <div className={classnames("min-vh-100 bg-" + context.theme,
         {'text-light': context.theme=== "dark"})}>
-      <Header user={user} />
+      <Header/>
       <div className="p-3">
         <Routes>
           <Route path="/" element={<UserList />} />
           <Route path="/roles" element={<Roles />} />
           <Route path="/counter" element={<Counter />} />
-          <Route path="/login" element={<Login setUser={setUser} />} />
-            <Route path="/register" element={<Register setUser={setUser} />} />
+          <Route path="/login" element={<Login/>} />
+            <Route path="/register" element={<Register/>} />
             <Route path="/posts/:id" element={<Post/>}/>
           <Route path="/users/:id" element={<User/>}/>
             <Route path="*" element={<Page404/>}/>

@@ -1,10 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import * as Yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import {Context} from "../context";
 
-function Register(props) {
+function Register() {
+
+    const {dispatch} = useContext(Context)
 
     const [countries, setCountries] = useState([])
 
@@ -46,7 +49,7 @@ function Register(props) {
                     });
                     setSubmitting(false);
                     navigate('/');
-                    props.setUser(name)
+                    dispatch({type: 'setUser', payload: values})
                 }
                 catch (error)
                 {

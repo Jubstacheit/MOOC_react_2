@@ -1,11 +1,10 @@
 import React, {useCallback, useContext} from 'react';
-import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import logo from '../logo.svg'
 import {Context} from "../context";
 import classnames from "classnames";
 
-function Header(props) {
+function Header() {
   const {context, dispatch} = useContext(Context)
   const switchTheme = useCallback(() => {
         dispatch({type: 'switchTheme'})
@@ -42,8 +41,8 @@ function Header(props) {
             </div>
           </div>
           <div className="navbar-text">
-            {props.user
-              ? <div>Bienvenue  {props.user}</div>
+            {context.user.name
+              ? <div>Bienvenue  {context.user.name}</div>
               : <div><Link to="/login">Connectez-vous !</Link>
                   <br/>ou&nbsp;
                     <Link to="/register">Inscrivez-vous</Link>
@@ -54,10 +53,6 @@ function Header(props) {
       </nav>
     </div>
   );
-}
-
-Header.propTypes = {
-  user: propTypes.string
 }
 
 export default Header;

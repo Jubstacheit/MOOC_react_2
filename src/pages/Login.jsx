@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import {Context} from "../context";
 
 const fakeAxios = {
     post: (url, data) => {
@@ -10,7 +11,9 @@ const fakeAxios = {
             if (data.login === 'Viviane' && data.password === 'PASSWORD') {
                 return Promise.resolve({
                     status: 200,
-                    data: {token: 'FAKE_TOKEN'}
+                    data: {
+                        token: 'FAKE_TOKEN',
+                        user: { name: data.login }}
                 })
             } else {
                 return Promise.reject({
@@ -23,8 +26,10 @@ const fakeAxios = {
     }
 }
 
-function Login(props) {
+function Login() {
     const navigate = useNavigate()
+
+    const {dispatch} = useContext(Context)
 
     const [authError, setAuthError] = useState('')
 
@@ -50,7 +55,7 @@ function Login(props) {
                         try {
                             const response = await fakeAxios.post('/api/login', {login, password})
                             axios.defaults.headers.common['Authorization'] = `Bearer: ${response.data.token}`
-                            props.setUser(login)
+                            dispatch({type: 'setUser', payload: response.data.user})
                             navigate('/')
                     } catch (error) {
                             if (error.status === 401) {
