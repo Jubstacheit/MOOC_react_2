@@ -15,6 +15,9 @@ const reducer = (state, action) => {
         case 'setUser': {
             return {...state, user: action.payload}
         }
+        case 'logout': {
+            return {...state, user: {}}
+        }
         default:
             throw Error('Unknown action in context reducer')
     }

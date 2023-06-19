@@ -1,5 +1,5 @@
 import React, {useCallback, useContext} from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import logo from '../logo.svg'
 import {Context} from "../context";
 import classnames from "classnames";
@@ -11,6 +11,11 @@ function Header() {
       },
       [dispatch],
   );
+
+  const logout = useCallback(() => {
+        dispatch({type: 'logout'});
+      } , [dispatch], );
+
 
   return (
     <div>
@@ -42,11 +47,16 @@ function Header() {
           </div>
           <div className="navbar-text">
             {context.user.name
-              ? <div>Bienvenue  {context.user.name}</div>
-              : <div><Link to="/login">Connectez-vous !</Link>
+              ? (<div>
+                  Bienvenue {context.user.name} -
+              <button id="disconnect" type="submit" className={"btn ms-2 btn-outline-" + context.theme} onClick={logout}>
+                Déconnexion
+              </button>
+              </div>)
+              : (<div><Link to="/login">Connectez-vous !</Link>
                   <br/>ou&nbsp;
                     <Link to="/register">Inscrivez-vous</Link>
-                </div>
+                </div>)
             }
           </div>
         </div>
